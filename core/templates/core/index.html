@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <title>Turbo.az Klon</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { color: #cc0000; text-align: center; }
+        .listing-card { background: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+        .info h3 { margin: 0 0 10px 0; color: #333; }
+        .price { font-size: 20px; font-weight: bold; color: #009900; }
+        .details { color: #666; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Turbo.az Elanlar</h1>
+
+        {% if listings %}
+            {% for item in listings %}
+                <div class="listing-card">
+                    <div class="info">
+                        <h3>{{ item.brand.name }} {{ item.car_model.name }}</h3>
+                        <div class="details">
+                            İli: {{ item.year }} | Yürüş: {{ item.mileage }} km | Yanacaq: {{ item.get_fuel_type_display }} | Şəhər: {{ item.city }}
+                        </div>
+                    </div>
+                    <div class="price">
+                        {{ item.price }} {{ item.currency }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-align: center; color: #777;">Hələ ki, heç bir elan əlavə olunmayıb. Admin paneldən elan əlavə edə bilərsiniz!</p>
+        {% endif %}
+    </div>
+</body>
+</html>
